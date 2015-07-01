@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
@@ -19,15 +21,27 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private CurrentWeather mCurrentWeather;
 
+    @Bind(R.id.timeLabel) TextView mTimeLabel;
+    @Bind(R.id.temperatureLabel) TextView mTemperatureLabel;
+    @Bind(R.id.humidityValue) TextView mHumidityValue;
+    @Bind(R.id.precipValue) TextView mPrecipValue;
+    @Bind(R.id.summaryLabel) TextView mSummaryLabel;
+    @Bind(R.id.iconImageView) ImageView mIconImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
         String apiKey = "2f2cba59eff9cea3276f041606dd492f";
         double latitude = 33.5808;
         double longtitude = -85.0767;
