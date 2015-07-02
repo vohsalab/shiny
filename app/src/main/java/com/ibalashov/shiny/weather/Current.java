@@ -1,4 +1,6 @@
-package com.ibalashov.shiny;
+package com.ibalashov.shiny.weather;
+
+import com.ibalashov.shiny.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.TimeZone;
 /**
  * Created by ibalashov on 6/30/2015.
  */
-public class CurrentWeather {
+public class Current {
     private String mIcon;
     private long mTime;
     private double mTemperature;

@@ -1,10 +1,12 @@
-package com.ibalashov.shiny;
+package com.ibalashov.shiny.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+
+import com.ibalashov.shiny.R;
 
 /**
  * Created by ibalashov on 6/30/2015.
