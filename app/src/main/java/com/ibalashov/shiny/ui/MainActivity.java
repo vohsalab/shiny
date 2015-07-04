@@ -15,13 +15,16 @@ import android.widget.Toast;
 
 import com.ibalashov.shiny.R;
 import com.ibalashov.shiny.weather.Current;
+import com.ibalashov.shiny.weather.Day;
 import com.ibalashov.shiny.weather.Forecast;
+import com.ibalashov.shiny.weather.Hour;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -159,8 +162,47 @@ public class MainActivity extends AppCompatActivity {
 
         Forecast forecast = new Forecast();
         forecast.setCurrent(getCurrentDetails(jsonData));
+        forecast.setHourlyForecast(getHourlyForecast(jsonData));
+        forecast.setDailyForecast(getDailyForecast(jsonData));
 
         return forecast;
+    }
+
+    private Day[] getDailyForecast(String jsonData) throws JSONException {
+        JSONObject forecast = new JSONObject(jsonData);
+        String timezone = forecast.getString("timezone");
+        JSONObject daily = forecast.getJSONObject("daily");
+        JSONArray data = daily.getJSONArray("data");
+        Day[] days = new Day[data.length()];
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject jsonDay = data.getJSONObject(i);
+            days[i] = new Day();
+            days[i].setTime(jsonDay.getLong("time"));
+            days[i].setSummary(jsonDay.getString("summary"));
+            days[i].setIcon(jsonDay.getString("icon"));
+            days[i].setTemperatureMax(jsonDay.getDouble("temperatureMax"));
+            days[i].setTimezone(timezone);
+        }
+        return days;
+    }
+
+    private Hour[] getHourlyForecast(String jsonData) throws JSONException {
+        JSONObject forecast = new JSONObject(jsonData);
+        String timezone = forecast.getString("timezone");
+        JSONObject hourly = forecast.getJSONObject("hourly");
+        JSONArray data = hourly.getJSONArray("data");
+        Hour[] hours = new Hour[data.length()];
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject jsonHour = data.getJSONObject(i);
+            hours[i] = new Hour();
+            hours[i].setSummary(jsonHour.getString("summary"));
+            hours[i].setIcon(jsonHour.getString("icon"));
+            hours[i].setTemperature(jsonHour.getDouble("temperature"));
+            hours[i].setTime(jsonHour.getLong("time"));
+            hours[i].setTimezone(timezone);
+        }
+
+        return hours;
     }
 
     private Current getCurrentDetails(String jsonData) throws JSONException {
