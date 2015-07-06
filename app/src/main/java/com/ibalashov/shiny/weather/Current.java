@@ -36,34 +36,34 @@ public class Current {
     }
 
     public int getIconId() {
-        int iconId = R.mipmap.clear_day;
+        int iconId = R.drawable.clear_day;
         switch (mIcon) {
             case "clear-night":
-                iconId = R.mipmap.clear_night;
+                iconId = R.drawable.clear_night;
                 break;
             case "rain":
-                iconId = R.mipmap.rain;
+                iconId = R.drawable.rain;
                 break;
             case "snow":
-                iconId = R.mipmap.snow;
+                iconId = R.drawable.snow;
                 break;
             case "sleet":
-                iconId = R.mipmap.sleet;
+                iconId = R.drawable.sleet;
                 break;
             case "wind":
-                iconId = R.mipmap.wind;
+                iconId = R.drawable.wind;
                 break;
             case "fog":
-                iconId = R.mipmap.fog;
+                iconId = R.drawable.fog;
                 break;
             case "cloudy":
-                iconId = R.mipmap.cloudy;
+                iconId = R.drawable.cloudy;
                 break;
             case "partly-cloudy-day":
-                iconId = R.mipmap.partly_cloudy;
+                iconId = R.drawable.partly_cloudy;
                 break;
             case "partly-cloudy-night":
-                iconId = R.mipmap.cloudy_night;
+                iconId = R.drawable.cloudy_night;
                 break;
         }
         return iconId;
